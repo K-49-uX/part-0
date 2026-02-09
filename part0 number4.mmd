@@ -1,0 +1,16 @@
+sequenceDiagram
+    participant U as User
+    participant UI as Web Page
+    participant API as Server API
+    participant DB as Database
+
+    U->>UI: Click "New Note"
+    UI->>U: Show note editor
+    U->>UI: Type note content
+    U->>UI: Click "Save"
+    UI->>API: POST /notes (note data)
+    API->>DB: Insert new note
+    DB-->>API: Success response
+    API-->>UI: 201 Created + note ID
+    UI-->>U: Display saved note
+    %% first-repo
