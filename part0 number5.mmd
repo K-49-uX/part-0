@@ -1,0 +1,10 @@
+flowchart TD
+    A[User enters SPA URL in browser] --> B[Browser sends HTTP GET request]
+    B --> C[Server responds with HTML file]
+    C --> D[Browser loads HTML]
+    D --> E[Browser downloads CSS & JavaScript]
+    E --> F[JavaScript executes]
+    F --> G[JS sends GET request for notes data]
+    G --> H[Server returns notes JSON]
+    H --> I[Browser renders notes dynamically]
+    I --> J[User interacts with the page without reload]
