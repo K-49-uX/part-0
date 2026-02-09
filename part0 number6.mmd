@@ -1,0 +1,16 @@
+sequenceDiagram
+    participant U as User
+    participant B as Browser (SPA)
+    participant JS as JavaScript App
+    participant API as Server
+    participant DB as Database
+
+    U->>B: Type note and click "Save"
+    B->>JS: Trigger submit event
+    JS->>JS: Prevent default form reload
+    JS->>API: POST /new_note_spa (note content as JSON)
+    API->>DB: Store new note
+    DB-->>API: Success response
+    API-->>JS: 201 Created + note data
+    JS-->>B: Update notes list in DOM
+    B-->>U: Show new note immediately (no page reload)
