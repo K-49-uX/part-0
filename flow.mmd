@@ -1,0 +1,30 @@
+sequenceDiagram
+    participant U as User
+    participant B as Browser
+    participant D as DNS Server
+    participant S as Web Server
+
+    U->>B: Enter URL & press Enter
+    B->>D: Resolve domain name
+    D-->>B: Return IP address
+
+    B->>S: Open TCP/TLS connection
+    B->>S: HTTP GET /
+    S-->>B: 200 OK + HTML
+
+    B->>B: Parse HTML & build DOM
+
+    B->>S: GET /style.css
+    S-->>B: CSS file
+    B->>B: Parse CSS & build CSSOM
+
+    B->>S: GET /main.js
+    S-->>B: JavaScript file
+    B->>B: Execute JavaScript
+
+    B->>S: GET /photo.png
+    S-->>B: Image file
+
+    B->>S: GET /data.json (via fetch/XHR)
+    S-->>B: JSON data
+    B->>B: Update DOM & re-render page
